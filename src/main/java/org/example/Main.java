@@ -1,12 +1,13 @@
 package org.example;
 
-import org.example.kit.Parser;
-import org.example.kit.Printer;
+import org.example.command.export.ExportCommandImpl;
+import org.example.command.parser.impl.ParseCommandImpl;
+import org.example.service.impl.ReportServiceImpl;
 
 public class Main {
     public static void main(String[] args) {
-        Parser parser = new Parser();
-        Printer printer = new Printer();
-        printer.print(parser.parse());
+        var reportService = new ReportServiceImpl(new ExportCommandImpl(), new ParseCommandImpl());
+        reportService.createReportFromFile("cdr.txt");
     }
+
 }
